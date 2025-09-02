@@ -1,0 +1,29 @@
+{
+  "cacheItemsMap": {
+    "lightning-basics.mdx": {
+      "document": {
+        "title": "Lightning Basics: Estimate Distance",
+        "description": "How to estimate lightning distance using the thunder-lag method.",
+        "date": "2025-09-01T00:00:00.000Z",
+        "slug": "lightning-basics",
+        "body": {
+          "raw": "\nTap start when you see lightning and stop when you hear thunder. The delay tells you distance.\n",
+          "html": "<p>Tap start when you see lightning and stop when you hear thunder. The delay tells you distance.</p>"
+        },
+        "_id": "lightning-basics.mdx",
+        "_raw": {
+          "sourceFilePath": "lightning-basics.mdx",
+          "sourceFileName": "lightning-basics.mdx",
+          "sourceFileDir": ".",
+          "contentType": "mdx",
+          "flattenedPath": "lightning-basics"
+        },
+        "type": "Post",
+        "url": "/blog/lightning-basics"
+      },
+      "documentHash": "1756773777780",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    }
+  }
+}

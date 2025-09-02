@@ -1,14 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { allPosts } from "contentlayer/generated"
-import MdxContent from "@/components/mdx-content" // or "../../components/mdx-content" if alias fails
 
-export const dynamic = "force-static" // build as SSG
+// Render dynamically to avoid earlier build-time quirk
+export const dynamic = "force-dynamic"
+export const revalidate = 0
 
-export function generateStaticParams() {
-  return allPosts.map((p) => ({ slug: p.slug }))
-}
-
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((p) => p.slug === params.slug)!
+export function generateMetadata({ params }: any) {
+  const post = allPosts.find((p) => p.slug === params.slug)
+  if (!post) return { title: "Post not found" }
   return {
     title: post.title,
     description: post.description,
@@ -22,7 +21,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   }
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage({ params }: any) {
   const post = allPosts.find((p) => p.slug === params.slug)
   if (!post) return null
 
@@ -30,9 +29,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <main className="max-w-2xl mx-auto p-6 space-y-4">
       <h1 className="text-2xl font-bold">{post.title}</h1>
       <p className="text-gray-600">{new Date(post.date).toLocaleDateString()}</p>
-      <article className="prose prose-neutral">
-        <MdxContent code={post.body.code} />
-      </article>
+      <article
+        className="prose prose-neutral"
+        dangerouslySetInnerHTML={{ __html: (post as any).body.html }}
+      />
     </main>
   )
 }

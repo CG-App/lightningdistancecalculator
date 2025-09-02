@@ -20,7 +20,9 @@ export default function LightningCalculator() {
           type="number"
           step="0.1"
           value={t}
-          onChange={(e) => setT(parseFloat(e.target.value) || 0)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setT(parseFloat(e.target.value) || 0)
+          }
           className="w-full rounded-lg border px-3 py-2"
         />
       </label>
@@ -29,7 +31,9 @@ export default function LightningCalculator() {
         <span className="text-sm text-gray-600">Units</span>
         <select
           value={u}
-          onChange={(e) => setU(e.target.value as any)}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            setU(e.target.value as 'mi' | 'km')
+          }
           className="w-full rounded-lg border px-3 py-2"
         >
           <option value="mi">Miles</option>

@@ -18,8 +18,8 @@ export type Post = {
   date: IsoDateTimeString
   updated?: IsoDateTimeString | undefined
   slug: string
-  /** MDX file body */
-  body: MDX
+  /** Markdown file body */
+  body: Markdown
   url: string
 }  
 

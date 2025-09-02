@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lightningdistancecalculator.com
+
+# Sitemaps
+Sitemap: https://lightningdistancecalculator.com/sitemap.xml
