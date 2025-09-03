@@ -2,6 +2,7 @@
 import { allPosts } from "contentlayer/generated"
 
 // Render dynamically to avoid earlier build-time quirk
+export const runtime = 'edge'
 export const dynamic = "force-dynamic"
 export const revalidate = 0
 
