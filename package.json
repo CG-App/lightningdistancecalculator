@@ -37,5 +37,13 @@
     "eslint-config-next": "15.5.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "allowedScripts": {
+      "contentlayer": true,
+      "esbuild": true,
+      "sharp": true,
+      "workerd": true
+    }
   }
 }
