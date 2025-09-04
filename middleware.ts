@@ -1,36 +1,33 @@
 // middleware.ts
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from 'next/server'
 
-export function middleware(req: NextRequest) {
-  const host = req.headers.get("host") || ""
-  const url = req.nextUrl
-
-  // Preview domain (Cloudflare Pages): never allow indexing
-  if (host.endsWith(".pages.dev")) {
-    // If robots.txt is requested, return a Disallow-all
-    if (url.pathname === "/robots.txt") {
-      return new NextResponse("User-agent: *\nDisallow: /\n", {
-        headers: {
-          "content-type": "text/plain; charset=utf-8",
-          "X-Robots-Tag": "noindex, nofollow",
-          // Helpful if a crawler ignores robots.txt but reads headers
-          "Cache-Control": "no-store",
-        },
-      })
-    }
-
-    // All other routes: add a noindex header
-    const res = NextResponse.next()
-    res.headers.set("X-Robots-Tag", "noindex, nofollow")
-    return res
-  }
-
-  // Production (.com): do nothing special
-  return NextResponse.next()
+export const config = {
+  matcher: ['/:path*'],
 }
 
-// Ignore static assets/_next
-export const config = {
-  matcher: ["/((?!_next|.*\\..*).*)"],
+export function middleware(req: NextRequest) {
+  const host = req.headers.get('host') || ''
+  const url = new URL(req.url)
+
+  const isPagesDev = host.endsWith('.pages.dev')
+
+  // Serve a different robots.txt on .pages.dev
+  if (url.pathname === '/robots.txt') {
+    if (isPagesDev) {
+      return new Response(
+        // Block all crawling on *.pages.dev
+        'User-agent: *\nDisallow: /\n',
+        { status: 200, headers: { 'Content-Type': 'text/plain' } }
+      )
+    }
+    // On .com, fall through to the static (next-sitemap) robots.txt
+    return NextResponse.next()
+  }
+
+  // Add noindex header on every other page for *.pages.dev
+  const res = NextResponse.next()
+  if (isPagesDev) {
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow')
+  }
+  return res
 }
