@@ -7,3 +7,4 @@ Host: https://lightningdistancecalculator.com
 
 # Sitemaps
 Sitemap: https://lightningdistancecalculator.com/sitemap.xml
+Sitemap: https://lightningdistancecalculator.com/sitemap-0.xml
