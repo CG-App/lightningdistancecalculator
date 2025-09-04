@@ -1,9 +1,14 @@
-import LightningCalculator from "@/components/LightningCalculator"
+// app/calculator/page.tsx
+import type { Metadata } from "next";
+import LightningCalculator from "@/components/LightningCalculator";
 
-export const metadata = {
-  title: "Lightning Distance Calculator",
+export const metadata: Metadata = {
+  title: "Calculator | Lightning Distance Calculator",
   description: "Estimate how far away a storm is using the thunder-lag method.",
-}
+  alternates: {
+    canonical: "https://lightningdistancecalculator.com/calculator",
+  },
+};
 
 export default function CalculatorPage() {
   return (
@@ -12,5 +17,5 @@ export default function CalculatorPage() {
       <p>Enter the seconds between lightning and thunder, or use a stopwatch.</p>
       <LightningCalculator />
     </main>
-  )
+  );
 }
