@@ -1,6 +1,18 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://lightningdistancecalculator.com',   // ← change to your real domain before deploy
+  siteUrl: "https://lightningdistancecalculator.com", // 👈 always apex
   generateRobotsTxt: true,
-  exclude: ['/404'],
+  sitemapSize: 5000,
+  exclude: ["/_not-found"], // app router default
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+    ],
+    additionalSitemaps: [
+      "https://lightningdistancecalculator.com/sitemap-0.xml",
+    ],
+  },
 };
