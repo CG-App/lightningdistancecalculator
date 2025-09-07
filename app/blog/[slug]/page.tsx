@@ -10,15 +10,12 @@ export function generateStaticParams(): { slug: string }[] {
   return allPosts.map((p) => ({ slug: p.slug }));
 }
 
-type PageProps = {
-  params: { slug: string };
-};
-
-export function generateMetadata({ params }: PageProps): Metadata {
+export function generateMetadata(
+  { params }: { params: { slug: string } }
+): Metadata {
   const post = allPosts.find((p) => p.slug === params.slug);
   if (!post) return { title: "Post not found" };
 
-  // Use absolute URLs for SEO canonicals/OG
   const canonical = `https://lightningdistancecalculator.com${post.url}`;
 
   return {
@@ -34,7 +31,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function BlogPostPage({ params }: PageProps) {
+export default function BlogPostPage(
+  { params }: { params: { slug: string } }
+) {
   const post = allPosts.find((p) => p.slug === params.slug);
   if (!post) notFound();
 
@@ -44,8 +43,10 @@ export default function BlogPostPage({ params }: PageProps) {
       {/* <p className="text-gray-600">{new Date(post.date).toLocaleDateString()}</p> */}
       <article className="prose prose-neutral">
         <div
-          // Contentlayer provides compiled HTML at post.body.html
-          dangerouslySetInnerHTML={{ __html: post.body.html as unknown as string }}
+          dangerouslySetInnerHTML={{
+            // Contentlayer provides compiled HTML at post.body.html
+            __html: post.body.html as unknown as string,
+          }}
         />
       </article>
     </main>
