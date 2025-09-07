@@ -6,14 +6,13 @@ import { allPosts } from "contentlayer/generated";
 export const revalidate = 86400; // seconds
 
 /** ✅ Pre-render all post slugs at build time */
-export function generateStaticParams(): { slug: string }[] {
+export function generateStaticParams() {
   return allPosts.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata(
-  { params }: { params: { slug: string } }
-): Metadata {
-  const post = allPosts.find((p) => p.slug === params.slug);
+export function generateMetadata(props: any): Metadata {
+  const slug = props?.params?.slug as string | undefined;
+  const post = allPosts.find((p) => p.slug === slug);
   if (!post) return { title: "Post not found" };
 
   const canonical = `https://lightningdistancecalculator.com${post.url}`;
@@ -31,10 +30,9 @@ export function generateMetadata(
   };
 }
 
-export default function BlogPostPage(
-  { params }: { params: { slug: string } }
-) {
-  const post = allPosts.find((p) => p.slug === params.slug);
+export default function BlogPostPage(props: any) {
+  const slug = props?.params?.slug as string | undefined;
+  const post = allPosts.find((p) => p.slug === slug);
   if (!post) notFound();
 
   return (
@@ -44,7 +42,6 @@ export default function BlogPostPage(
       <article className="prose prose-neutral">
         <div
           dangerouslySetInnerHTML={{
-            // Contentlayer provides compiled HTML at post.body.html
             __html: post.body.html as unknown as string,
           }}
         />
