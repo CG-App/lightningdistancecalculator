@@ -27,3 +27,17 @@
 
 /calculator
   Cache-Control: public, s-maxage=600, stale-while-revalidate=60
+
+# --- Fresh-but-short for metadata files ---
+/robots.txt
+  Cache-Control: public, max-age=300, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=300, must-revalidate
+
+/sitemap-*.xml
+  Cache-Control: public, max-age=300, must-revalidate
+
+# --- If you ever add API routes, keep them uncached ---
+/api/*
+  Cache-Control: no-store
