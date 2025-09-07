@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { allPosts } from "contentlayer/generated";
 import Link from "next/link";
 
+export const revalidate = 3600; // 1 hour
+
+
 export const metadata: Metadata = {
   title: "Blog | Lightning Distance Calculator",
   description: "Articles about lightning, storms, and safety.",

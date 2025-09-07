@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import LightningCalculator from "@/components/LightningCalculator";
 
+export const revalidate = 3600; // 1 hour
+
 export const metadata: Metadata = {
   title: "Calculator | Lightning Distance Calculator",
   description: "Estimate how far away a storm is using the thunder-lag method.",

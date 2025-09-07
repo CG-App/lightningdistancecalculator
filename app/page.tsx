@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 3600; // 1 hour
+
 export const metadata: Metadata = {
   title: "Lightning Distance Calculator",
   description: "Estimate lightning distance using the thunder-lag method.",

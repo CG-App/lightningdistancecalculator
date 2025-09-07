@@ -1,14 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { allPosts } from "contentlayer/generated"
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { allPosts } from "contentlayer/generated";
 
-// Render dynamically to avoid earlier build-time quirk
-export const runtime = 'edge'
-export const dynamic = "force-dynamic"
-export const revalidate = 0
+// ✅ Static generation + ISR (24h)
+export const revalidate = 86400; // seconds
 
-export function generateMetadata({ params }: any) {
-  const post = allPosts.find((p) => p.slug === params.slug)
-  if (!post) return { title: "Post not found" }
+// ✅ Pre-render all post slugs at build time
+export async function generateStaticParams() {
+  return allPosts.map((p) => ({ slug: p.slug }));
+}
+
+type PageProps = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const post = allPosts.find((p) => p.slug === params.slug);
+  if (!post) return { title: "Post not found" };
+
   return {
     title: post.title,
     description: post.description,
@@ -19,21 +28,22 @@ export function generateMetadata({ params }: any) {
       type: "article",
       url: post.url,
     },
-  }
+  };
 }
 
-export default function BlogPostPage({ params }: any) {
-  const post = allPosts.find((p) => p.slug === params.slug)
-  if (!post) return null
+export default function BlogPostPage({ params }: PageProps) {
+  const post = allPosts.find((p) => p.slug === params.slug);
+  if (!post) notFound();
 
   return (
     <main className="max-w-2xl mx-auto p-6 space-y-4">
       <h1 className="text-2xl font-bold">{post.title}</h1>
+      {/* If you want the date back, uncomment: */}
       {/* <p className="text-gray-600">{new Date(post.date).toLocaleDateString()}</p> */}
       <article
         className="prose prose-neutral"
-        dangerouslySetInnerHTML={{ __html: (post as any).body.html }}
+        dangerouslySetInnerHTML={{ __html: post.body.html as unknown as string }}
       />
     </main>
-  )
+  );
 }
