@@ -29,7 +29,7 @@ export default function BlogPostPage({ params }: any) {
   return (
     <main className="max-w-2xl mx-auto p-6 space-y-4">
       <h1 className="text-2xl font-bold">{post.title}</h1>
-      <p className="text-gray-600">{new Date(post.date).toLocaleDateString()}</p>
+      {/* <p className="text-gray-600">{new Date(post.date).toLocaleDateString()}</p> */}
       <article
         className="prose prose-neutral"
         dangerouslySetInnerHTML={{ __html: (post as any).body.html }}

@@ -28,9 +28,9 @@ export default function BlogIndexPage() {
               </Link>
             </h2>
             <p className="text-sm text-gray-600">{p.description}</p>
-            <small className="text-gray-500">
+            {/* <small className="text-gray-500">
               {new Date(p.date).toLocaleDateString()}
-            </small>
+            </small> */}
           </li>
         ))}
       </ul>
