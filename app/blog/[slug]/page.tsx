@@ -10,9 +10,16 @@ export function generateStaticParams() {
   return allPosts.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata(props: any): Metadata {
-  const slug = props?.params?.slug as string | undefined;
+/** Helper to safely extract params.slug without using `any` */
+function getSlug(input: unknown): string | undefined {
+  const maybe = input as { params?: { slug?: string } } | undefined;
+  return maybe?.params?.slug;
+}
+
+export function generateMetadata(input: unknown): Metadata {
+  const slug = getSlug(input);
   const post = allPosts.find((p) => p.slug === slug);
+
   if (!post) return { title: "Post not found" };
 
   const canonical = `https://lightningdistancecalculator.com${post.url}`;
@@ -30,8 +37,8 @@ export function generateMetadata(props: any): Metadata {
   };
 }
 
-export default function BlogPostPage(props: any) {
-  const slug = props?.params?.slug as string | undefined;
+export default function BlogPostPage(input: unknown) {
+  const slug = getSlug(input);
   const post = allPosts.find((p) => p.slug === slug);
   if (!post) notFound();
 
