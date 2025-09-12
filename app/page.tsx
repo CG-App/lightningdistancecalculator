@@ -1,5 +1,6 @@
 // app/page.tsx
 import type { Metadata } from "next";
+import Link from "next/link";
 import LightningCalculator from "@/components/LightningCalculator";
 import JsonLd from "@/components/json-ld";
 
@@ -7,24 +8,19 @@ export const revalidate = 3600; // 1 hour
 
 export const metadata: Metadata = {
   title: "Lightning Distance Calculator",
-  description: "Estimate how far away a storm is using the thunder-lag method.",
+  description:
+    "Estimate how far away a storm is using the thunder-lag method.",
   alternates: {
     canonical: "https://lightningdistancecalculator.com/",
-  },
-  openGraph: {
-    title: "Lightning Distance Calculator",
-    description: "Estimate how far away a storm is using the thunder-lag method.",
-    url: "https://lightningdistancecalculator.com/",
-    type: "website",
   },
 };
 
 const BASE_URL = "https://lightningdistancecalculator.com";
 
 export default function HomePage() {
-  const pageUrl = `${BASE_URL}/`;
+  const pageUrl = BASE_URL;
 
-  // ✅ Breadcrumb JSON-LD (homepage)
+  // ✅ Breadcrumb JSON-LD (homepage as the calculator)
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -33,7 +29,7 @@ export default function HomePage() {
     ],
   };
 
-  // ✅ WebApplication JSON-LD (point to root)
+  // ✅ WebApplication JSON-LD
   const webAppLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -46,15 +42,18 @@ export default function HomePage() {
 
   return (
     <main className="max-w-2xl mx-auto p-6 space-y-4">
-      {/* Structured data */}
+      {/* Inject structured data */}
       <JsonLd data={[breadcrumbLd, webAppLd]} />
 
       <h1 className="text-2xl font-bold">Lightning Distance Calculator</h1>
       <p>Enter the seconds between lightning and thunder, or use a stopwatch.</p>
+
       <LightningCalculator />
 
-      <div className="pt-4">
-        <a href="/blog" className="underline">Read the Blog →</a>
+      <div className="pt-6">
+        <Link href="/blog" className="underline">
+          Read the blog →
+        </Link>
       </div>
     </main>
   );
