@@ -32,21 +32,21 @@ export default function BlogIndexPage() {
     .sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
   return (
-    <main className="max-w-2xl mx-auto p-6">
+    <main className="content">
       {/* Inject breadcrumbs JSON-LD */}
       <JsonLd data={breadcrumbLd} />
 
-      <h1 className="text-2xl font-bold mb-4">Blog</h1>
-      <ul className="grid gap-4">
+      <h1>Blog</h1>
+      <ul>
         {posts.map((p) => (
-          <li key={p.slug} className="border rounded-xl p-4">
-            <h2 className="text-lg font-semibold">
-              <Link href={p.url} className="underline">
+          <li key={p.slug} className="border rounded-xl p-4 mb-4">
+            <h2>
+              <Link href={p.url} className="hover:underline">
                 {p.title}
               </Link>
             </h2>
-            <p className="text-sm text-gray-600">{p.description}</p>
-            {/* <small className="text-gray-500">
+            <p>{p.description}</p>
+            {/* <small>
               {new Date(p.date).toLocaleDateString()}
             </small> */}
           </li>

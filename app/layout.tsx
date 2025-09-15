@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -56,8 +57,9 @@ export default function RootLayout({
         <JsonLd data={organizationLd} />
         <JsonLd data={webSiteLd} />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+      {/* Sticky footer: full-height column + flex-1 content wrapper */}
+      <body className={`min-h-screen flex flex-col antialiased ${geistSans.variable} ${geistMono.variable}`}>
+        <div className="flex-1 flex flex-col">{children}</div>
         <Footer />
         <Analytics />
       </body>

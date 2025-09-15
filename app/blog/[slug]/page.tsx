@@ -47,7 +47,6 @@ export default function BlogPostPage(input: unknown) {
 
   const canonical = `https://lightningdistancecalculator.com${post.url}`;
 
-  // Minimal, valid Article schema (no `any`)
   const articleSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -71,22 +70,17 @@ export default function BlogPostPage(input: unknown) {
     },
   };
 
-  // Ensure a string without using `any`
   const html = String((post.body as { html?: unknown })?.html ?? "");
 
   return (
-    <main className="max-w-2xl mx-auto p-6 space-y-4">
-      {/* JSON-LD */}
+    <main className="content">
       <JsonLd data={articleSchema} />
 
-      <h1 className="text-2xl font-bold">{post.title}</h1>
+      <h1>{post.title}</h1>
 
-      {/* <p className="text-gray-600">{new Date(post.date).toLocaleDateString()}</p> */}
+      {/* <p>{new Date(post.date).toLocaleDateString()}</p> */}
 
-      <article
-        className="prose prose-neutral"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <article dangerouslySetInnerHTML={{ __html: html }} />
     </main>
   );
 }

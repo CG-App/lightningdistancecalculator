@@ -41,12 +41,15 @@ export default function HomePage() {
   };
 
   return (
-    <main className="max-w-2xl mx-auto p-6 space-y-4">
+    <main className="content-app">
       {/* Inject structured data */}
       <JsonLd data={[breadcrumbLd, webAppLd]} />
 
-      <h1 className="text-2xl font-bold">Lightning Distance Calculator</h1>
-      <p>Enter the seconds between lightning and thunder, or use a stopwatch.</p>
+      <h1>Lightning Distance Calculator</h1>
+      <p className="mb-6">
+        Start the timer when you see lightning, stop it when you hear thunder,
+        and instantly see the estimated distance.
+      </p>
 
       <LightningCalculator />
 

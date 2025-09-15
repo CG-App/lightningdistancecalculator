@@ -19,8 +19,110 @@
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* ---------- Shared page wrapper ---------- */
+/* Use .content on /terms, /privacy, /faqs, /feedback, /blog, and blog posts */
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: clamp(20rem, 90vw, 75rem); /* 320px → 90vw → 1200px */
+  padding-left: 1rem;  /* px-4 */
+  padding-right: 1rem;
+  padding-top: 3rem;   /* py-12 */
+  padding-bottom: 3rem;
+}
+
+/* Typography rhythm inside .content */
+.content h1 {
+  font-size: 1.875rem; /* text-2xl */
+  line-height: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.content h2 {
+  font-size: 1.25rem; /* text-xl */
+  line-height: 1.75rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.content p {
+  margin-top: 0.75rem;
+  color: var(--foreground);
+}
+
+.content ul,
+.content ol {
+  margin-left: 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.content li {
+  margin-top: 0.25rem;
+}
+
+.content a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.content code {
+  background: rgba(127, 127, 127, 0.12);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* ---------- Calculator-specific wrapper ---------- */
+/* Use .content-app on the calculator page */
+.content-app {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: clamp(20rem, 90vw, 75rem); /* 320px → 90vw → 1200px */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2.5rem; /* slightly less vertical padding than articles */
+  padding-bottom: 2.5rem;
+}
+
+/* Typography rhythm inside .content-app */
+.content-app h1 {
+  font-size: 2rem; /* bigger than article h1 */
+  line-height: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 1rem;
+  text-align: center; /* center-align the main app title */
+}
+
+.content-app p {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center; /* center intro text for balance */
+  color: var(--foreground);
+}
+
+.content-app a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Ensure calculator widget sits centered with breathing space */
+.content-app > *:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
