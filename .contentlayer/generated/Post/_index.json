@@ -1,12 +1,12 @@
 [
   {
-    "title": "Lightning Basics: Estimate Distance",
+    "title": "Lightning Basics",
     "description": "How to estimate lightning distance using the thunder-lag method.",
-    "date": "2025-09-01T00:00:00.000Z",
+    "date": null,
     "slug": "lightning-basics",
     "body": {
-      "raw": "\nTap start when you see lightning and stop when you hear thunder. The delay tells you distance.\n",
-      "html": "<p>Tap start when you see lightning and stop when you hear thunder. The delay tells you distance.</p>"
+      "raw": "\nCount the seconds between lighting strike and boom. The seconds can be used to deterime distance based on speed of sound. \n\nYou can do this utilizing the stopwatch function on the lighting distance calculator built by lightningdistancecalculator.com, we hope you find it valuable.\n\n\n",
+      "html": "<p>Count the seconds between lighting strike and boom. The seconds can be used to deterime distance based on speed of sound.</p>\n<p>You can do this utilizing the stopwatch function on the lighting distance calculator built by lightningdistancecalculator.com, we hope you find it valuable.</p>"
     },
     "_id": "lightning-basics.mdx",
     "_raw": {
