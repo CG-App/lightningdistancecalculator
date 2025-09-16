@@ -7,8 +7,8 @@
         "date": null,
         "slug": "lightning-basics",
         "body": {
-          "raw": "\nCount the seconds between lighting strike and boom. The seconds can be used to deterime distance based on speed of sound. \n\nYou can do this utilizing the stopwatch function on the lighting distance calculator built by lightningdistancecalculator.com, we hope you find it valuable.\n\n\n",
-          "html": "<p>Count the seconds between lighting strike and boom. The seconds can be used to deterime distance based on speed of sound.</p>\n<p>You can do this utilizing the stopwatch function on the lighting distance calculator built by lightningdistancecalculator.com, we hope you find it valuable.</p>"
+          "raw": "\n![Blue lightning storm at night](/images/lightning-basics/blue-lightning.jpg)\n\nCount the seconds between lighting strike and boom. The seconds can be used to deterime distance based on speed of sound. \n\nYou can do this utilizing the stopwatch function on the lighting distance calculator built by lightningdistancecalculator.com, we hope you find it valuable.\n\n\n",
+          "html": "<p><img src=\"/images/lightning-basics/blue-lightning.jpg\" alt=\"Blue lightning storm at night\"></p>\n<p>Count the seconds between lighting strike and boom. The seconds can be used to deterime distance based on speed of sound.</p>\n<p>You can do this utilizing the stopwatch function on the lighting distance calculator built by lightningdistancecalculator.com, we hope you find it valuable.</p>"
         },
         "_id": "lightning-basics.mdx",
         "_raw": {
@@ -21,7 +21,7 @@
         "type": "Post",
         "url": "/blog/lightning-basics"
       },
-      "documentHash": "1757225557207",
+      "documentHash": "1757998155817",
       "hasWarnings": false,
       "documentTypeName": "Post"
     }
