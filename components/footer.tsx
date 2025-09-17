@@ -16,10 +16,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="mt-16 border-t border-zinc-800 bg-black text-white"
-      aria-label="Site footer"
-    >
+    <footer className="mt-16 border-t" aria-label="Site footer">
       <div className="mx-auto max-w-6xl px-4 py-8">
         <nav aria-label="Footer navigation">
           {/* Column on very small screens; row (wrapping) from sm and up */}
@@ -28,7 +25,7 @@ export default function Footer() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="hover:opacity-90 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
+                  className="underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm"
                 >
                   {l.label}
                 </Link>
@@ -37,7 +34,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <p className="mt-6 text-center text-xs text-zinc-400">
+        <p className="mt-6 text-center text-xs">
           © {year} Lightning Distance Calculator. All rights reserved.
         </p>
       </div>

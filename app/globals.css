@@ -12,10 +12,40 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* 🌙 Dark mode: full black bg + neutral light-gray text */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;  /* pure black */
+    --foreground: #d4d4d4;  /* neutral, easy on eyes */
+  }
+
+  /* Blockquotes */
+  .content blockquote {
+    color: #d4d4d4;
+    background: rgba(212, 212, 212, 0.06);
+    border-left-color: rgba(212, 212, 212, 0.25);
+  }
+
+  /* Inline code & code blocks */
+  .content code {
+    background: rgba(212, 212, 212, 0.08);
+  }
+  .content pre {
+    background: #0a0a0a; /* slight lift over black */
+    color: #e5e5e5;
+  }
+
+  /* Tables */
+  .content thead th {
+    border-bottom: 1px solid rgba(212, 212, 212, 0.3);
+  }
+  .content tbody td {
+    border-bottom: 1px solid rgba(212, 212, 212, 0.15);
+  }
+
+  /* Horizontal rule */
+  .content hr {
+    border-top-color: rgba(212, 212, 212, 0.2);
   }
 }
 
@@ -37,8 +67,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   max-width: clamp(20rem, 90vw, 75rem); /* 320px → 90vw → 1200px */
-  padding-left: 1rem;  /* px-4 */
-  padding-right: 1rem;
+  padding-left: 0.75rem;  /* reduced for mobile */
+  padding-right: 0.75rem;
   padding-top: 3rem;   /* py-12 */
   padding-bottom: 3rem;
 }
@@ -103,16 +133,16 @@ body {
   margin-top: 0.25rem;
 }
 
-/* Links (subtle underline, stronger hover) */
+/* ✅ Links: no underline, underline only on hover */
 .content a {
   color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: rgba(127, 127, 127, 0.5);
+  text-decoration: none;
   transition: text-decoration-color 150ms ease, color 150ms ease;
 }
 .content a:hover {
-  text-decoration-color: rgba(127, 127, 127, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
 }
 
 /* Inline code */
@@ -124,15 +154,15 @@ body {
     Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .content a code {
-  text-decoration: inherit;
+  text-decoration: none;
 }
 
 /* Images & figures */
 .content img {
   display: block;
   max-width: 100%;
-  height: auto;
-  margin: 1.5rem auto;  /* centered, refined spacing */
+  height: auto;          /* prevent distortion */
+  margin: 1.5rem auto;   /* centered, refined spacing */
   border-radius: 0.5rem;
 }
 .content figure {
@@ -145,7 +175,7 @@ body {
   opacity: 0.85;
 }
 
-/* Blockquotes */
+/* Blockquotes (light mode defaults; dark overrides above) */
 .content blockquote {
   margin: 1.25rem 0;
   padding: 0.75rem 1rem;
@@ -154,15 +184,8 @@ body {
   border-radius: 0.375rem;
   color: rgba(23, 23, 23, 0.85);
 }
-@media (prefers-color-scheme: dark) {
-  .content blockquote {
-    color: rgba(237, 237, 237, 0.9);
-    background: rgba(237, 237, 237, 0.06);
-    border-left-color: rgba(237, 237, 237, 0.25);
-  }
-}
 
-/* Code blocks */
+/* Code blocks (light mode defaults; dark overrides above) */
 .content pre {
   overflow-x: auto;
   padding: 1rem;
@@ -171,17 +194,11 @@ body {
   font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9rem;
   line-height: 1.5;
-  background: #0a0a0a;
-  color: #f5f5f5;
-}
-@media (prefers-color-scheme: light) {
-  .content pre {
-    background: #111827; /* zinc-900-ish */
-    color: #f3f4f6;
-  }
+  background: #111827; /* zinc-900-ish for light mode */
+  color: #f3f4f6;
 }
 
-/* Tables */
+/* Tables (light mode defaults; dark overrides above) */
 .content table {
   width: 100%;
   border-collapse: collapse;
@@ -221,9 +238,9 @@ body {
   margin-left: auto;
   margin-right: auto;
   max-width: clamp(20rem, 90vw, 75rem); /* 320px → 90vw → 1200px */
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 2.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 2.5rem; /* slightly less vertical padding than articles */
   padding-bottom: 2.5rem;
 }
 /* Base heading & text for app — keep slightly tighter */
@@ -241,10 +258,16 @@ body {
   text-align: center;
   color: var(--foreground);
 }
+/* ✅ App links: no underline, underline on hover */
 .content-app a {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;
+  transition: text-decoration-color 150ms ease, color 150ms ease;
 }
+.content-app a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Ensure calculator widget spacing */
 .content-app > *:not(:last-child) {
   margin-bottom: 1.5rem;
 }
@@ -255,9 +278,9 @@ body {
 @media (min-width: 640px) {
   .content { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 
-  .content h1 { font-size: 2.25rem; line-height: 2.75rem; }   /* was 2.0/2.5 */
-  .content h2 { font-size: 1.75rem; line-height: 2.25rem; }   /* was 1.5/2.0 */
-  .content h3 { font-size: 1.375rem; line-height: 1.875rem; } /* was 1.25/1.75 */
+  .content h1 { font-size: 2.25rem; line-height: 2.75rem; }
+  .content h2 { font-size: 1.75rem; line-height: 2.25rem; }
+  .content h3 { font-size: 1.375rem; line-height: 1.875rem; }
   .content h4 { font-size: 1.25rem; line-height: 1.75rem; }
   .content h5 { font-size: 1.0625rem; line-height: 1.625rem; }
   .content h6 { font-size: 0.9rem; line-height: 1.375rem; }
@@ -293,10 +316,8 @@ body {
 }
 
 /* ---------- Responsive typography for .content-app (manual breakpoints) ---------- */
-
-/* ≥640px (sm) — gentle bump */
 @media (min-width: 640px) {
-  .content-app h1 { font-size: 2.25rem; line-height: 2.75rem; }   /* was 2.0/2.5 */
+  .content-app h1 { font-size: 2.25rem; line-height: 2.75rem; }
   .content-app h2 { font-size: 1.75rem; line-height: 2.25rem; }
   .content-app h3 { font-size: 1.375rem; line-height: 1.875rem; }
   .content-app h4 { font-size: 1.25rem; line-height: 1.75rem; }
@@ -306,8 +327,6 @@ body {
   .content-app p,
   .content-app li { font-size: 1.0625rem; line-height: 1.7; }
 }
-
-/* ≥768px (md) — primary app size */
 @media (min-width: 768px) {
   .content-app h1 { font-size: 2.5rem; line-height: 3rem; }
   .content-app h2 { font-size: 2rem; line-height: 2.5rem; }
@@ -319,8 +338,6 @@ body {
   .content-app p,
   .content-app li { font-size: 1.1rem; line-height: 1.75; }
 }
-
-/* ≥1024px (lg) — roomy desktop app */
 @media (min-width: 1024px) {
   .content-app h1 { font-size: 2.75rem; line-height: 3.25rem; }
   .content-app h2 { font-size: 2.25rem; line-height: 2.75rem; }
@@ -331,4 +348,54 @@ body {
 
   .content-app p,
   .content-app li { font-size: 1.125rem; line-height: 1.8; }
+}
+
+/* 📱 Reduce side padding on very small screens */
+@media (max-width: 640px) {
+  .content,
+  .content-app {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* ---------- Footer (theme-only, layout lives in the component) ---------- */
+footer {
+  background: #000000;                            /* always black */
+  color: #ffffff;                                 /* light mode text */
+  border-top: 2px solid rgba(127, 127, 127, 0.25);
+}
+footer p {
+  color: rgba(255, 255, 255, 0.7);                /* subtle copyright text */
+}
+/* Footer links: no underline by default, underline on hover */
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: text-decoration-color 150ms ease, opacity 150ms ease, color 150ms ease;
+}
+footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
+}
+
+/* Dark-mode footer refinements */
+@media (prefers-color-scheme: dark) {
+  footer {
+    background: #000000;                          /* pure black to match body */
+    color: #d4d4d4;                               /* neutral, easy on eyes */
+    border-top-color: rgba(212, 212, 212, 0.2);
+  }
+  footer p {
+    color: rgba(212, 212, 212, 0.7);
+  }
+  footer a {
+    color: #e5e5e5;
+  }
+  footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: currentColor;
+  }
 }
