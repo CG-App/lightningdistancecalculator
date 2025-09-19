@@ -9,29 +9,13 @@
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=()
 
   # --- Content Security Policy (CSP) ---
-  # Start strict; open up only what you need.
-  # If you use analytics/CDNs, add them to the relevant directives below.
-  Content-Security-Policy: default-src 'self' blob: data:;
-  base-uri 'self';
-  form-action 'self';
-  frame-ancestors 'none';
-  img-src 'self' data: blob:;
-  font-src 'self' data:;
-  style-src 'self' 'unsafe-inline';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:;
-  connect-src 'self' blob:;
-  worker-src 'self' blob:;
-  manifest-src 'self';
-  prefetch-src 'self';
-
-
+  # Single line so parsers don't drop directives (like script-src).
+  Content-Security-Policy: default-src 'self' blob: data:; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; connect-src 'self' blob:; worker-src 'self' blob:; manifest-src 'self'; prefetch-src 'self'
 
   # HSTS: Prefer enabling at the Cloudflare dashboard (zone level) for lightningdistancecalculator.com
   # SSL/TLS -> Edge Certificates -> HTTP Strict Transport Security (HSTS)
   # Avoid sending HSTS from .pages.dev to keep staging safe.
   # Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-
-
 
 # --- Long-term cached assets (immutable, 1 year) ---
 /favicon.ico
@@ -48,7 +32,6 @@
 
 /images/*
   Cache-Control: public, max-age=31536000, immutable
-
 
 # --- HTML pages (short edge cache + SWR) ---
 /
