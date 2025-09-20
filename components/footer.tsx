@@ -20,14 +20,13 @@ export default function Footer() {
       className="
         mt-16 border-t
         bg-black text-white
-        dark:bg-[#cccccc] dark:text-black
-        border-gray-800 dark:border-gray-400
+        dark:bg-[#636363] dark:text-white
+        border-gray-800 dark:border-gray-500
       "
       aria-label="Site footer"
     >
       <div className="mx-auto max-w-6xl px-4 py-8">
         <nav aria-label="Footer navigation">
-          {/* Column on very small screens; row (wrapping) from sm and up */}
           <ul className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3 text-sm">
             {links.map((l) => (
               <li key={l.href}>
@@ -45,7 +44,7 @@ export default function Footer() {
         <p
           className="
             mt-6 text-center text-xs
-            text-white/70 dark:text-black/70
+            text-white/70 dark:text-white/70
           "
         >
           © {year} Lightning Distance Calculator. All rights reserved.

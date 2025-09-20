@@ -13,7 +13,7 @@ export default function StickyCTA() {
         fixed top-0 left-0 right-0 z-50
         h-auto min-h-12 sm:min-h-14
         bg-black text-white
-        dark:bg-[#cccccc] dark:text-black
+        dark:bg-[#636363] dark:text-white
         shadow-[0_4px_20px_rgba(0,0,0,0.15)]
         flex items-center
       "
@@ -39,7 +39,7 @@ export default function StickyCTA() {
             </div>
           </Link>
 
-          {/* Headline: now always visible, smaller on mobile, wraps if needed */}
+          {/* Headline: always visible, smaller on mobile, wraps if needed */}
           <div className="flex-1 min-w-0">
             <p className="font-medium text-xs sm:text-sm leading-snug break-words">
               Calculate Lightning Distance In Seconds
