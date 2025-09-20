@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import type { Post } from "contentlayer/generated";
 import JsonLd from "@/components/json-ld";
+import AuthorBio from "@/components/author-bio";
 
 /** Static generation + ISR (24h) */
 export const revalidate = 86400;
@@ -56,9 +57,9 @@ export default function BlogPostPage(input: unknown) {
     datePublished: post.date,
     dateModified: post.date,
     author: {
-      "@type": "Organization",
-      name: "Lightning Distance Calculator",
-      url: "https://lightningdistancecalculator.com",
+      "@type": "Person",
+      name: "Colton",
+      url: "https://lightningdistancecalculator.com/author",
     },
     publisher: {
       "@type": "Organization",
@@ -81,6 +82,9 @@ export default function BlogPostPage(input: unknown) {
       {/* <p>{new Date(post.date).toLocaleDateString()}</p> */}
 
       <article dangerouslySetInnerHTML={{ __html: html }} />
+
+      {/* Author bio at the bottom */}
+      <AuthorBio />
     </main>
   );
 }
