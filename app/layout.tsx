@@ -5,6 +5,7 @@ import "./globals.css";
 import JsonLd from "@/components/json-ld";
 import Analytics from "./analytics";
 import Footer from "@/components/footer";
+import StickyCTAGate from "@/components/StickyCTAGate"; // ⬅️ (unchanged)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +25,7 @@ export const metadata: Metadata = {
     default: SITE_NAME,
     template: "%s · Lightning Distance Calculator",
   },
-  description:
-    "Estimate how far away lightning is using the thunder-lag method.",
+  description: "Estimate how far away lightning is using the thunder-lag method.",
   metadataBase: new URL(BASE_URL),
   // Canonicals for specific pages can still be set per-route via `generateMetadata`.
 };
@@ -52,14 +52,24 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <JsonLd data={organizationLd} />
         <JsonLd data={webSiteLd} />
       </head>
-      {/* Sticky footer: full-height column + flex-1 content wrapper */}
-      <body className={`min-h-screen flex flex-col antialiased ${geistSans.variable} ${geistMono.variable}`}>
-        <div className="flex-1 flex flex-col">{children}</div>
+
+      {/* Full-height layout with sticky header CTA */}
+      <body
+        className={`min-h-screen flex flex-col antialiased ${geistSans.variable} ${geistMono.variable}`}
+      >
+        {/* Sticky CTA on all pages except "/" (renders at very top) */}
+        <StickyCTAGate />
+
+        {/* Push content down by the sticky header height (h-12 sm:h-14) */}
+        <div className="flex-1 flex flex-col pt-12 sm:pt-14">
+          {children}
+        </div>
+
         <Footer />
         <Analytics />
       </body>
