@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const BASE_URL = "https://lightningdistancecalculator.com";
 
 export default function BlogIndexPage() {
-  // ✅ Breadcrumb JSON-LD
+  // Breadcrumb JSON-LD
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -29,9 +29,9 @@ export default function BlogIndexPage() {
 
   const posts = allPosts
     .slice()
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+    .sort((a, b) => +new Date(b.date || 0) - +new Date(a.date || 0));
 
-  // ✅ CollectionPage + ItemList JSON-LD (lists all blog posts)
+  // CollectionPage + ItemList JSON-LD (evergreen: no dates included)
   const collectionLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -54,7 +54,7 @@ export default function BlogIndexPage() {
           headline: p.title,
           description: p.description,
           url: `${BASE_URL}${p.url}`,
-          datePublished: p.date,
+          // Intentionally no datePublished/dateModified
         },
       })),
     },
@@ -62,7 +62,6 @@ export default function BlogIndexPage() {
 
   return (
     <main className="content">
-      {/* Inject JSON-LD */}
       <JsonLd data={breadcrumbLd} />
       <JsonLd data={collectionLd} />
 
@@ -76,7 +75,7 @@ export default function BlogIndexPage() {
               </Link>
             </h2>
             <p>{p.description}</p>
-            {/* <small>{new Date(p.date).toLocaleDateString()}</small> */}
+            {/* Intentionally no visible date */}
           </li>
         ))}
       </ul>

@@ -11,7 +11,7 @@ export default function AuthorPage() {
   const authorLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Your Name",
+    name: "Colton",
     url: "https://lightningdistancecalculator.com/author",
     sameAs: [
       // Add profile URLs here (Twitter, LinkedIn, GitHub, etc.)

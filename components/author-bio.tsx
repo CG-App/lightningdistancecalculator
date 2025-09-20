@@ -14,7 +14,7 @@ export default function AuthorBio() {
           </p>
           <p className="mt-2 text-sm">
             <Link href="/author" className="underline underline-offset-4">
-              Read the full author bio →
+              Learn More About Me →
             </Link>
           </p>
         </div>

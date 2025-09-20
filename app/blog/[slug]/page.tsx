@@ -37,7 +37,9 @@ export function generateMetadata(input: unknown): Metadata {
       description: post.description,
       type: "article",
       url: canonical,
+      // Intentionally no article:published_time / og:updated_time
     },
+    // Intentionally no date-related Twitter meta either
   };
 }
 
@@ -48,14 +50,13 @@ export default function BlogPostPage(input: unknown) {
 
   const canonical = `https://lightningdistancecalculator.com${post.url}`;
 
+  // Evergreen Article JSON-LD: no datePublished or dateModified
   const articleSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description,
     mainEntityOfPage: canonical,
-    datePublished: post.date,
-    dateModified: post.date,
     author: {
       "@type": "Person",
       name: "Colton",
@@ -79,8 +80,7 @@ export default function BlogPostPage(input: unknown) {
 
       <h1>{post.title}</h1>
 
-      {/* <p>{new Date(post.date).toLocaleDateString()}</p> */}
-
+      {/* Intentionally no visible date */}
       <article dangerouslySetInnerHTML={{ __html: html }} />
 
       {/* Author bio at the bottom */}
