@@ -11,15 +11,16 @@ export default function StickyCTA() {
       aria-label="Lightning Distance Calculator call to action"
       className="
         fixed top-0 left-0 right-0 z-50
-        h-12 sm:h-14
+        h-auto min-h-12 sm:min-h-14
         bg-black text-white
         dark:bg-[#cccccc] dark:text-black
         shadow-[0_4px_20px_rgba(0,0,0,0.15)]
+        flex items-center
       "
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="mx-auto max-w-screen-lg h-full px-3 sm:px-4">
-        <div className="h-full flex items-center gap-2 sm:gap-3">
+      <div className="mx-auto max-w-6xl w-full px-4 py-1">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Logo scales with CTA bar */}
           <Link
             href="/"
@@ -38,9 +39,9 @@ export default function StickyCTA() {
             </div>
           </Link>
 
-          {/* Headline: hidden on small screens to keep it uncluttered */}
-          <div className="flex-1 min-w-0 hidden sm:block">
-            <p className="font-medium leading-tight truncate text-sm">
+          {/* Headline: now always visible, smaller on mobile, wraps if needed */}
+          <div className="flex-1 min-w-0">
+            <p className="font-medium text-xs sm:text-sm leading-snug break-words">
               Calculate Lightning Distance In Seconds
             </p>
           </div>
