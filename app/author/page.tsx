@@ -20,23 +20,23 @@ export default function AuthorPage() {
   };
 
   return (
-    <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <main className="content">
       <JsonLd data={authorLd} />
 
-      <h1 className="text-3xl font-bold tracking-tight">About The Author</h1>
-      <div className="mt-6 space-y-4 text-zinc-700 dark:text-zinc-300 leading-relaxed">
-        <p>
-          I’m <strong>Colton</strong>, a weather-safety enthusiast and builder of simple,
-          reliable calculators. My goal is to make storm awareness tools fast, accurate,
-          and easy to use.
-        </p>
-        <p>
-          On this site I share practical advice, research notes, and product updates that
-          help you use the Lightning Distance Calculator effectively.
-        </p>
-        {/* Optional: contact/social links */}
-        {/* <p>Follow on X … | Email …</p> */}
-      </div>
+      <h1>About The Author</h1>
+
+      <p>
+        I’m <strong>Colton</strong>, a weather-safety enthusiast and builder of simple,
+        reliable calculators. My goal is to make storm awareness tools fast, accurate,
+        and easy to use.
+      </p>
+      <p>
+        On this site I share practical advice, research notes, and product updates that
+        help you use the Lightning Distance Calculator effectively.
+      </p>
+
+      {/* Optional: add socials or contact */}
+      {/* <p>Follow on X … | Email …</p> */}
     </main>
   );
 }
