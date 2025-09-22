@@ -416,6 +416,5 @@ if (typeof window !== "undefined" && !window.__LIGHTNING_CALC_TESTED__) {
   if (trendFromSeries([5, 5.05], 0.1) !== "steady") throw new Error("trend steady failed");
   if (trendFromSeries([5], 0.1) !== "insufficient") throw new Error("trend insufficient failed");
 
-  // eslint-disable-next-line no-console
   console.log("LightningDistanceCalculator tests: passed");
 }

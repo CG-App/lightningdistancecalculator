@@ -6,10 +6,12 @@ import type { Post } from "contentlayer/generated";
 import JsonLd from "@/components/json-ld";
 import AuthorBio from "@/components/author-bio";
 
-/** Static generation + ISR (24h) */
-export const revalidate = 86400;
+// ✅ Run on Edge and make the route fully static (no ISR)
+//    This satisfies @cloudflare/next-on-pages prerender requirements.
+export const runtime = "edge";
+export const revalidate = false;
 
-/** Pre-render all post slugs at build time */
+// Pre-render all post slugs at build time
 export function generateStaticParams() {
   return allPosts.map((p) => ({ slug: p.slug }));
 }

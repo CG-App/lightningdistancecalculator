@@ -1,8 +1,10 @@
 // app/page.tsx
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import Link from "next/link";
 import LightningDistanceCalculator from "@/components/LightningDistanceCalculator";
+
+// ✅ Run this route on the Edge runtime (required by next-on-pages for dynamic routes)
+export const runtime = "edge";
 
 // Next.js route segment config (no caching)
 export const dynamic = "force-dynamic";
@@ -165,13 +167,6 @@ export default function HomePage() {
           can strike unpredictably. Follow official weather guidance.
         </p>
       </section>
-
-      {/* Internal link for crawlability */}
-      <div className="pt-6">
-        <Link href="/blog" className="underline">
-          Read the blog →
-        </Link>
-      </div>
     </main>
   );
 }
