@@ -1,33 +1,52 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
-import remarkGfm from 'remark-gfm'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+// contentlayer.config.ts
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 export const Post = defineDocumentType(() => ({
-  name: 'Post',
-  // You can keep .mdx extension if you like; we'll parse as Markdown, not MDX runtime
-  filePathPattern: `**/*.mdx`,
-  contentType: 'markdown',
+  name: "Post",
+  filePathPattern: "**/*.mdx",
+  contentType: "mdx",
   fields: {
-    title: { type: 'string', required: true },
-    description: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    updated: { type: 'date' },
-    slug: { type: 'string', required: true },
+    title: { type: "string", required: true },
+    description: { type: "string", required: false },
+    // ✅ Date is optional now (evergreen posts build fine)
+    date: { type: "date", required: false },
+    updated: { type: "date", required: false },
+    slug: { type: "string", required: true },
+    // ✅ Allow author + tags without errors
+    author: { type: "string", required: false },
+    tags: { type: "list", of: { type: "string" }, required: false },
   },
   computedFields: {
-    url: { type: 'string', resolve: (p) => `/blog/${p.slug}` },
+    slug: {
+      type: "string",
+      resolve: (doc) =>
+        doc._raw.flattenedPath.split("/").pop() ?? doc._raw.flattenedPath,
+    },
+    publishedAt: {
+      type: "string",
+      resolve: (doc) =>
+        doc.date ? new Date(doc.date).toISOString() : "",
+    },
+    url: {
+      type: "string",
+      resolve: (doc) =>
+        `https://lightningdistancecalculator.com/blog/${doc._raw.flattenedPath}`,
+    },
   },
-}))
+}));
 
 export default makeSource({
-  contentDirPath: 'content/posts',
+  contentDirPath: "content/posts",
   documentTypes: [Post],
-  // Use the markdown pipeline (not mdx) to output HTML we can render on the server
-  markdown: {
+  mdx: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
+    ],
   },
-  // Optional: silence the alias warning
   disableImportAliasWarning: true,
-})
+});

@@ -7,7 +7,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
  * Lightning Distance Calculator – React Widget (lightweight)
  * Integration notes for Next.js App Router:
  * - Marked as a client component.
- * - No UI or calculation logic changed.
+ * - No UI or calculation logic changed (apart from dark-mode card color you requested).
  */
 
 // ---------------- Helpers (pure) ----------------
@@ -220,9 +220,8 @@ export default function LightningDistanceCalculator({
 
   // ---------------- Render ----------------
   return (
-    <div className="w-full flex items-start justify-center py-6 sm:py-12 bg-transparent">
+    <div className="min-h-screen flex items-start justify-center py-6 sm:py-12">
       <div className="mx-auto w-full max-w-xl p-5 sm:p-8 md:p-8 rounded-2xl border border-gray-200 shadow-xl bg-white/90 dark:bg-[#636363] text-gray-900 dark:text-white">
-
         {/* Title */}
         <div className='flex items-center justify-between gap-3'>
           <h2 className='mt-1 mb-5 m-0 text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2'><span aria-hidden>⚡</span><span>Lightning Distance Calculator</span></h2>
@@ -232,12 +231,12 @@ export default function LightningDistanceCalculator({
         <div className='relative grid place-items-center min-h-[56px] sm:min-h-[64px]'>
           <div className={`absolute inset-0 flex items-center justify-center motion-safe:transition-all motion-safe:duration-300 ease-out ${showCongrats ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
             <div className='w-full inline-flex items-center gap-2 px-3 py-2 rounded-md bg-indigo-100 text-indigo-900 font-semibold shadow-sm text-center text-sm justify-center overflow-hidden whitespace-normal break-words'>
-              <span className='truncate'>⭐ You're a Storm Watcher!</span>
+              <span className='truncate'>⭐ You&apos;re a Storm Watcher!</span>
               <button onClick={() => setShowCongrats(false)} className='ml-2 text-indigo-700 hover:underline text-xs flex-shrink-0' aria-label='Dismiss banner'>Dismiss</button>
             </div>
           </div>
           <p className={`text-sm sm:text-base text-gray-600 text-center motion-safe:transition-all motion-safe:duration-300 ease-out ${showCongrats ? 'opacity-0 -translate-y-2' : 'opacity-100 translate-y-0'}`}>
-            Tap <strong>Start</strong> when you see lightning, <strong>Stop</strong> when you hear thunder. Repeat to track the storm's trend.
+            Tap <strong>Start</strong> when you see lightning, <strong>Stop</strong> when you hear thunder. Repeat to track the storm&apos;s trend.
           </p>
         </div>
 
@@ -364,7 +363,7 @@ export default function LightningDistanceCalculator({
           {showWhy && (
             <div id='why-content' className='mt-2 text-sm text-gray-700 space-y-3'>
               <p>
-                Sound travels about 343 m/s at 20°C (68°F). That's roughly 1 km every ~3 seconds or 1 mile every ~5 seconds.
+                Sound travels about 343 m/s at 20°C (68°F). That&apos;s roughly 1 km every ~3 seconds or 1 mile every ~5 seconds.
                 Temperature, humidity, wind, and terrain can change this slightly. Treat this as an estimate.
               </p>
               <p><strong>Disclaimer:</strong> This tool provides an estimate based on sound travel time. Lightning can strike unpredictably. For informational purposes only — no guarantee of safety is implied. Always follow official weather advisories.</p>
@@ -376,11 +375,20 @@ export default function LightningDistanceCalculator({
   );
 }
 
+/** Lint-safe global window augmentation for the dev-time sanity flag */
+declare global {
+  interface Window {
+    __LIGHTNING_CALC_TESTED__?: boolean;
+  }
+}
+
 // ---------------- Dev-time sanity tests (console) ----------------
-if (typeof window !== 'undefined' && !(window as any).__LIGHTNING_CALC_TESTED__) {
-  (window as any).__LIGHTNING_CALC_TESTED__ = true;
+if (typeof window !== "undefined" && !window.__LIGHTNING_CALC_TESTED__) {
+  window.__LIGHTNING_CALC_TESTED__ = true;
   const EPS = 1e-9;
-  function approx(a: number, b: number, eps = EPS) { if (Math.abs(a - b) > eps) throw new Error(`Test failed: ${a} != ${b}`); }
+  function approx(a: number, b: number, eps = EPS) {
+    if (Math.abs(a - b) > eps) throw new Error(`Test failed: ${a} != ${b}`);
+  }
 
   // Conversions
   approx(milesFromSeconds(5), 1);
@@ -388,25 +396,26 @@ if (typeof window !== 'undefined' && !(window as any).__LIGHTNING_CALC_TESTED__)
   approx(kmFromSeconds(3), 1);
 
   // formatSmart ranges
-  if (formatSmart(3.456) !== '3.46') throw new Error('formatSmart 0-10 failed');
-  if (formatSmart(123.45) !== '123.45') throw new Error('formatSmart <1000 two-decimals failed');
-  if (formatSmart(1234.5) !== '1,235') throw new Error('formatSmart >1000 failed');
+  if (formatSmart(3.456) !== "3.46") throw new Error("formatSmart 0-10 failed");
+  if (formatSmart(123.45) !== "123.45") throw new Error("formatSmart <1000 two-decimals failed");
+  if (formatSmart(1234.5) !== "1,235") throw new Error("formatSmart >1000 failed");
 
   // Validation
-  if (!isValidSeconds(0.01)) throw new Error('validation failed: 0.01 should be valid');
-  if (isValidSeconds(0)) throw new Error('validation failed: 0 should be invalid');
-  if (isValidSeconds(-5)) throw new Error('validation failed: negative should be invalid');
+  if (!isValidSeconds(0.01)) throw new Error("validation failed: 0.01 should be valid");
+  if (isValidSeconds(0)) throw new Error("validation failed: 0 should be invalid");
+  if (isValidSeconds(-5)) throw new Error("validation failed: negative should be invalid");
 
   // Fixed-window average
   const f1 = fixedWindowAverage([10, 8, 6, 4], 3); if (Math.abs(f1 - 6) > 1e-9) throw new Error(`fixedWindowAverage failed: got ${f1}`);
-  const f2 = fixedWindowAverage([5], 3); if (Math.abs(f2 - 5) > 1e-9) throw new Error('fixedWindowAverage single value failed');
-  const f3 = fixedWindowAverage([9, 6], 3); if (Math.abs(f3 - 7.5) > 1e-9) throw new Error('fixedWindowAverage two values failed');
+  const f2 = fixedWindowAverage([5], 3); if (Math.abs(f2 - 5) > 1e-9) throw new Error("fixedWindowAverage single value failed");
+  const f3 = fixedWindowAverage([9, 6], 3); if (Math.abs(f3 - 7.5) > 1e-9) throw new Error("fixedWindowAverage two values failed");
 
   // Trend
-  if (trendFromSeries([5, 4], 0.1) !== 'closer') throw new Error('trend closer failed');
-  if (trendFromSeries([4, 5], 0.1) !== 'further') throw new Error('trend further failed');
-  if (trendFromSeries([5, 5.05], 0.1) !== 'steady') throw new Error('trend steady failed');
-  if (trendFromSeries([5], 0.1) !== 'insufficient') throw new Error('trend insufficient failed');
+  if (trendFromSeries([5, 4], 0.1) !== "closer") throw new Error("trend closer failed");
+  if (trendFromSeries([4, 5], 0.1) !== "further") throw new Error("trend further failed");
+  if (trendFromSeries([5, 5.05], 0.1) !== "steady") throw new Error("trend steady failed");
+  if (trendFromSeries([5], 0.1) !== "insufficient") throw new Error("trend insufficient failed");
 
-  console.log('LightningDistanceCalculator tests: passed');
+  // eslint-disable-next-line no-console
+  console.log("LightningDistanceCalculator tests: passed");
 }
