@@ -6,9 +6,8 @@ import type { Post } from "contentlayer/generated";
 import JsonLd from "@/components/json-ld";
 import AuthorBio from "@/components/author-bio";
 
-// ✅ Run on Edge and make the route fully static (no ISR)
-//    This satisfies @cloudflare/next-on-pages prerender requirements.
-export const runtime = "edge";
+// ❌ Do NOT export `runtime = 'edge'` here because this page uses generateStaticParams.
+// ✅ Fully static (no ISR)
 export const revalidate = false;
 
 // Pre-render all post slugs at build time
