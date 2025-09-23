@@ -12,30 +12,28 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* 🌙 Dark mode: full black bg + neutral light-gray text */
+/* 🌙 Dark mode: page chrome (outside the app window) */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #000000;  /* pure black */
     --foreground: #d4d4d4;  /* neutral, easy on eyes */
   }
 
-  /* Blockquotes */
+  /* Only style rich content outside the app window */
   .content blockquote {
     color: #d4d4d4;
     background: rgba(212, 212, 212, 0.06);
     border-left-color: rgba(212, 212, 212, 0.25);
   }
 
-  /* Inline code & code blocks */
   .content code {
     background: rgba(212, 212, 212, 0.08);
   }
   .content pre {
-    background: #0a0a0a; /* slight lift over black */
+    background: #0a0a0a;
     color: #e5e5e5;
   }
 
-  /* Tables */
   .content thead th {
     border-bottom: 1px solid rgba(212, 212, 212, 0.3);
   }
@@ -43,7 +41,6 @@
     border-bottom: 1px solid rgba(212, 212, 212, 0.15);
   }
 
-  /* Horizontal rule */
   .content hr {
     border-top-color: rgba(212, 212, 212, 0.2);
   }
@@ -234,6 +231,8 @@ body {
 }
 
 /* ---------- Calculator-specific wrapper ---------- */
+/* Layout-only container for the app window.
+   Do NOT define dark-specific colors here; the component controls its own look. */
 .content-app {
   margin-left: auto;
   margin-right: auto;
@@ -243,7 +242,9 @@ body {
   padding-top: 2.5rem; /* slightly less vertical padding than articles */
   padding-bottom: 2.5rem;
 }
-/* Base heading & text for app — keep slightly tighter */
+
+/* Base heading & text for app — keep slightly tighter.
+   Colors inherit from the page unless the component overrides them. */
 .content-app h1 {
   font-size: 2rem;
   line-height: 2.5rem;
@@ -256,8 +257,9 @@ body {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   text-align: center;
-  color: var(--foreground);
+  color: inherit; /* ← no forced color; calculator controls its own palette */
 }
+
 /* ✅ App links: no underline, underline on hover */
 .content-app a {
   text-decoration: none;
@@ -267,12 +269,13 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
 /* Ensure calculator widget spacing */
 .content-app > *:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
-/* ---------- Responsive typography for .content (manual breakpoints) ---------- */
+/* ---------- Responsive typography for .content ---------- */
 
 /* ≥640px (sm) — gentle bump */
 @media (min-width: 640px) {
@@ -315,7 +318,7 @@ body {
   .content li { font-size: 1.15rem; line-height: 1.8; }
 }
 
-/* ---------- Responsive typography for .content-app (manual breakpoints) ---------- */
+/* ---------- Responsive typography for .content-app ---------- */
 @media (min-width: 640px) {
   .content-app h1 { font-size: 2.25rem; line-height: 2.75rem; }
   .content-app h2 { font-size: 1.75rem; line-height: 2.25rem; }
