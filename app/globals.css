@@ -239,7 +239,7 @@ body {
   max-width: clamp(20rem, 90vw, 75rem); /* 320px → 90vw → 1200px */
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  padding-top: 1.0rem;
+  padding-top: 0.5rem;
   padding-bottom: 2.5rem;
 }
 
@@ -274,6 +274,15 @@ body {
 .content-app > *:not(:last-child) {
   margin-bottom: 1.5rem;
 }
+
+/*-------Home/Application page specific styling--------*/
+
+/* Special case: homepage */
+.content.home {
+  padding-top: 0 !important;
+  padding-bottom: 2rem; /* keep some breathing room at bottom */
+}
+
 
 /* ---------- Responsive typography for .content ---------- */
 
