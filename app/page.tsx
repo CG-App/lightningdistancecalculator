@@ -1,6 +1,6 @@
 // app/page.tsx
 import type { Metadata } from "next";
-import LightningDistanceCalculator from "../components/LightningDistanceCalculator"; // relative import
+import LightningDistanceCalculator from "../components/LightningDistanceCalculator"; // ⬅️ relative import (no alias)
 
 export const metadata: Metadata = {
   title: "Lightning Distance Calculator",
@@ -89,7 +89,11 @@ export default function HomePage() {
   } as const;
 
   return (
-    <main className="content" role="main" aria-label="Lightning Distance Calculator">
+    <main
+      className="content-app -mt-12 sm:-mt-14"
+      role="main"
+      aria-label="Lightning Distance Calculator"
+    >
       {/* Accessible H1 without duplicating visual titles */}
       <h1 className="sr-only">Lightning Distance Calculator</h1>
 
@@ -99,12 +103,10 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      {/* Calculator window (locked styling via .content-app in globals.css) */}
-      <section className="content-app">
-        <LightningDistanceCalculator />
-      </section>
+      {/* Calculator */}
+      <LightningDistanceCalculator />
 
-      {/* Crawlable explanatory copy (inherits .content styles, incl. dark mode) */}
+      {/* Crawlable explanatory copy */}
       <section className="mt-8 prose prose-neutral dark:prose-invert max-w-none" aria-label="About the calculator">
         <h2 className="!mt-0">How The Lightning Distance Calculator Works</h2>
         <p>

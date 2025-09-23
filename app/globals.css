@@ -239,7 +239,7 @@ body {
   max-width: clamp(20rem, 90vw, 75rem); /* 320px → 90vw → 1200px */
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  padding-top: 2.5rem; /* slightly less vertical padding than articles */
+  padding-top: 1.0rem;
   padding-bottom: 2.5rem;
 }
 
