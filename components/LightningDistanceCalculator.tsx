@@ -247,10 +247,10 @@ export default function LightningDistanceCalculator({
   // ---------------- Render ----------------
   return (
     <div className="w-full flex items-start justify-center py-6 sm:py-12">
-      <div className="ldc-card mx-auto w-full max-w-xl p-5 sm:p-8 md:p-8 rounded-2xl border shadow-xl">
+      <div className="ldc-card mx-auto w-full max-w-xl pt-3 px-5 pb-5 sm:pt-4 sm:px-8 sm:pb-6 md:pt-5 md:px-8 md:pb-6 rounded-2xl border shadow-xl">
         {/* Title */}
         <div className="flex items-center justify-between gap-3">
-          <h2 className="mt-1 mb-5 m-0 text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2">
+          <h2 className="mt-1 mb-2 m-0 text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2">
             <span aria-hidden>⚡</span>
             <span>Lightning Distance Calculator</span>
           </h2>
