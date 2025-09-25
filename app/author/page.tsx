@@ -25,79 +25,119 @@ export default function AuthorPage() {
           <h1>About the Author</h1>
         </header>
 
-        <section>
+        <section id="meet-colton">
           <h2>Meet Colton</h2>
-
           <p>
-            My name is Colton, and I am the creator of <strong>LightningDistanceCalculator.com</strong>. My fascination with lightning began when I was young, and it has only grown stronger over the years. I can still recall occasional summer evenings spent on the porch, watching the sky erupt with light and feeling the ground shake as thunder &amp; lightning rolled across the sky. Even now, when storms move in, I find myself outside again, drawn to that same awe and curiosity that captured me as a child.
+            My name is Colton, and I am the creator of{" "}
+            <strong>LightningDistanceCalculator.com</strong>. My fascination with
+            lightning started when I was young and has stayed with me ever since. I
+            can still remember summer evenings spent on the porch, watching the sky
+            flash with light and hearing thunder roll in the distance. Even now, when
+            storms pass through, I find myself stepping outside, drawn back to that
+            same sense of awe and curiosity.
           </p>
-
           <p>
-            As a boy, I discovered the simple method of counting the seconds between the flash of lightning and the boom of thunder to estimate distance. That trick became a tradition, something I practiced time and again. Today, I have taken that practice a step further by creating a tool that makes the process more accurate, intuitive, and engaging for anyone who shares the same fascination.
+            As a kid, I learned the simple method of counting the seconds between a
+            lightning strike and the sound of thunder to figure out how far away it
+            was. It quickly became a habit, something I did almost every time a storm
+            rolled through. That small tradition eventually inspired me to create a
+            tool that makes the process easier, more accurate, and more fun for
+            anyone who shares the same interest.
           </p>
-
           <p>
-            My respect for storms deepened one unforgettable night. A powerful bolt of lightning struck my neighbor’s home, igniting a fire that raced through the upper level and forced the fire department into action. The thunder was overwhelming that night, shaking the neighborhood with  force. That night left a lasting impression on me and reinforced how unpredictable and dangerous lightning storms can be.
+            One night, my respect for storms deepened in a way I’ll never forget. A
+            bolt of lightning struck my neighbor’s home, sparking a fire that spread
+            quickly and brought the fire department rushing to the scene. The thunder
+            that followed shook the neighborhood and left a lasting impression on me.
+            That experience reminded me that lightning is not just fascinating to
+            watch, but also powerful and unpredictable.
           </p>
         </section>
 
-        <section>
+        <section id="why-i-built">
           <h2>Why I Built Lightning Distance Calculator</h2>
-
           <p>
-            Those experiences led me to create <strong>LightningDistanceCalculator.com</strong>. The old method of counting seconds in your head was useful, but I wanted something more. I envisioned a tool that was interactive, accurate, and enjoyable to use. This site is the result — designed for people who share a passion for storms and want a reliable way to measure their distance.
+            Those experiences motivated me to build{" "}
+            <strong>LightningDistanceCalculator.com</strong>. While counting in your
+            head works, I wanted to create something more engaging and reliable. This
+            site is the result — designed for people who love storms and want a clear
+            way to track how far off the lightning really is.
           </p>
-
           <p>
-            From the beginning, this has been a passion project. It grew out of a lifelong curiosity about thunderstorms and a determination to build something simple yet effective. Many weather apps exist, but I wanted this one to stand apart — dedicated, streamlined, and created specifically for storm enthusiasts.
+            From the start, this has been a passion project. It grew out of a
+            lifelong curiosity about thunderstorms and the desire to create something
+            simple, straightforward, and useful. There are plenty of weather apps out
+            there, but I wanted this tool to stand apart: dedicated, practical, and
+            made specifically for storm watchers.
           </p>
         </section>
 
-        <section>
+        <section id="what-to-expect">
           <h2>What You Can Expect Here</h2>
-
           <p>
-            The purpose of this site is straightforward: to make storm watching more engaging. Whether you are relaxing on the porch, camping in the woods, fishing by the lake, or hiking in the mountains, this calculator gives you a clear way to track lightning in real time. While it has an educational side, its true aim is to provide an immediate, interactive connection with storms.
+            The goal of this site is simple: to make storm watching more engaging and
+            interactive. Whether you’re sitting on the porch, camping in the woods,
+            fishing by the lake, or hiking in the mountains, the calculator gives you
+            an easy way to follow storms in real time. While there’s an educational
+            side to it, the focus is on creating a tool that’s clear, direct, and fun
+            to use.
           </p>
-
           <p>
-            The calculator is designed to balance accuracy with simplicity. No tool can account for every factor in nature, but this one provides a dependable estimate that enhances the experience of storm watching without losing its thrill.
+            The calculator balances simplicity with accuracy. While no tool can
+            account for every detail in nature, it provides a dependable estimate
+            that makes storm watching more exciting without overcomplicating things.
           </p>
-
           <p>
-            That said, this calculator should never replace safety decisions. When safety is on the line, always follow the guidance of your local weather authorities.
+            <strong>Important:</strong> This tool should never replace safety
+            precautions. If there’s any risk, always follow the advice of local
+            weather authorities.
           </p>
         </section>
 
-        <section>
+        <section id="approach">
           <h2>My Approach and Philosophy</h2>
-
           <p>
-            Building this site was about more than writing code; it was about capturing the feeling I experience when storms roll in. Lightning commands both wonder and respect, and I wanted to design a tool that reflects that balance. The calculator allows you to stay immersed in the storm while it handles the details quietly in the background.
+            Building this site has been about more than writing code. It’s been about
+            sharing the experience of watching a storm unfold. Lightning inspires
+            both respect and wonder, and I wanted to design a tool that reflects
+            both. The calculator handles the numbers quietly in the background,
+            leaving you free to focus on the storm itself.
           </p>
-
           <p>
-            I believe tools like this strengthen our connection to nature. Whether you are teaching your children about weather, sitting through a summer storm with friends, or making decisions while outdoors, this calculator has a role to play. It makes storm watching both enjoyable and practical.
+            I believe tools like this help people connect more deeply with the world
+            around them. Whether you’re teaching your kids about weather, sharing a
+            summer storm with friends, or making decisions while outdoors, the
+            calculator is built to be both practical and enjoyable.
           </p>
         </section>
 
-        <section>
+        <section id="outdoors">
           <h2>My Connection to the Outdoors</h2>
-
           <p>
-            My love for weather is closely tied to my love of the outdoors. Camping, hiking, and fishing have always been important parts of my life, and storms are constant reminders of nature’s raw power. That bond fuels both my respect for lightning and my desire to understand it more deeply. The tradition I began as a child continues today, only now I share that same experience with others through this site.
+            My interest in weather is closely tied to my love of the outdoors.
+            Camping, hiking, and fishing have been a big part of my life, and storms
+            are constant reminders of nature’s power. That connection fuels both my
+            respect for lightning and my curiosity to understand it better. What
+            started as a childhood habit has carried into adulthood, and now I get to
+            share it with others through this site.
           </p>
         </section>
 
-        <section>
+        <section id="closing">
           <h2>Closing Thoughts</h2>
-
           <p>
-            <strong>LightningDistanceCalculator.com</strong> was created to make storm watching more meaningful and engaging. My journey with lightning began with childhood nights on the porch, carried through moments of witnessing its destructive force, and led to building a tool for others who share this fascination. I continue the tradition of storm watching today, and my hope is that this site gives you the same sense of clarity, respect, and wonder that has stayed with me all these years.
+            <strong>LightningDistanceCalculator.com</strong> was created to make
+            storm watching easier, more interactive, and more enjoyable. My journey
+            with lightning began on quiet summer nights, grew through unforgettable
+            experiences, and led me to build a tool for others who share the same
+            fascination. I still continue the tradition of storm watching today, and
+            I hope this site gives you the same sense of clarity, respect, and wonder
+            that it gives me.
           </p>
-
           <p>
-            Thank you for visiting, and I hope you find the <strong>Lightning Distance Calculator</strong> both practical and useful.
+            Thank you for visiting, and I hope you find the{" "}
+            <strong>Lightning Distance Calculator</strong> both helpful and
+            engaging.
           </p>
         </section>
       </article>
