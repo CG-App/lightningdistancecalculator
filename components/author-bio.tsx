@@ -53,8 +53,8 @@ export default function AuthorBio() {
             </Link>
             , a site born from my lifelong fascination with thunder & lightning.
             Inspired by childhood evenings spent storm watching and firsthand
-            encounters with lightning’s power, I built this tool to help others
-            track strikes with clarity and ease. When I'm not coding, you’ll
+            encounters with lightnings power, I built this tool to help others
+            track strikes with clarity and ease. When I am not coding, you will
             often find me outdoors camping, hiking, or fishing.
           </p>
           <p className="text-sm !mt-0">
